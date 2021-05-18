@@ -25,8 +25,6 @@ getWeatherData = (city) => {
     })
 }
 
-console.log(getWeatherData('Bangladesh'));
-
 /**
  * Retrieve city input and get the weather data
  * HINT: Use the promise returned from getWeatherData()
@@ -34,7 +32,13 @@ console.log(getWeatherData('Bangladesh'));
 searchCity = () => {
     const city = document.getElementById('city-input').value;
     // CODE GOES HERE
-
+    getWeatherData(city)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error);
+        })
 }
 
 /**

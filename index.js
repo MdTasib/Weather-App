@@ -1,7 +1,7 @@
 /**
  * Weather App
  * DONE: Complete getWeatherData() to return json response Promise
- * TODO: Complete searchCity() to get user input and get data using getWeatherData()
+ * Done: Complete searchCity() to get user input and get data using getWeatherData()
  * TODO: Complete showWeatherData() to set the data in the the html file from response
  */
 
@@ -34,10 +34,13 @@ searchCity = () => {
     // CODE GOES HERE
     getWeatherData(city)
         .then(response => {
-            console.log(response)
+            showWeatherData(response);
         })
         .catch(error => {
-            console.log(error);
+            let errorMsg = document.getElementById('error').innerHTML;
+            if (errorMsg === undefined) {
+                errorMsg = 'city not found'
+            }
         })
 }
 
@@ -47,5 +50,9 @@ searchCity = () => {
  */
 showWeatherData = (weatherData) => {
     //CODE GOES HERE
-
+    document.getElementById('city-name').innerHTML = weatherData.name;
+    document.getElementById('weather-type').innerHTML = weatherData.weather[0].main;
+    document.getElementById('temp').innerHTML = weatherData.main.temp;
+    document.getElementById('min-temp').innerHTML = weatherData.main.temp_min;
+    document.getElementById('max-temp').innerHTML = weatherData.main.temp_max;
 }
